@@ -10,23 +10,37 @@ const config = require('./config.json')
 //TODO: Create Eris client
 const bot = new Eris.Client(config.BOT_TOKEN, {
     messageLimit: 20,
-    defaultImageSize:256
+    defaultImageSize:256,
+    restMode: true
 })
 
 //ready
-bot.on("ready", () => {
-    console.log("The Tower of Power is online!")
+bot.on(`ready`, () => {
+    console.log(`The Tower of Power is online!`)
 });
 
 //TODO: Generate command list
 
-//TODO: Parse Messages
-//Ignore Bots and banned users
-//Check message starts with prefix or bot mention
-//Check for command and send message contents to appropriate command handler
-//As needed parse messages that don't start with commands but we do care about
+bot.on(`messageCreate`, message)
+{
+    //TODO: Parse Messages
+    //Ignore Bots
+    if (message.author.bot) {
+        return
+    }
 
-//TODO: Parse other events\
+    //Ignore banned userss
+
+    //Check message starts with prefix or bot mention
+    if (message.content.startsWith(`n.`) || message.content.startsWith(bot.user.mention))
+    {
+        //Check for command and send message contents to appropriate command handler
+    }
+
+//As needed parse messages that don't start with commands but we do care about
+}
+
+//TODO: Parse other events
 //Guild Create and Delete
 //Presence change?
 
