@@ -1,5 +1,5 @@
 //Suggest proper spelling of a command
-function didYouMean (word, commands, common) {
+function didYouMean (_word, _commands, _common) {
 
 }
 
@@ -18,7 +18,7 @@ function oneAway (word) {
     for (i = 0; i < word.length; i++){
         deletes[i] = splits[i][0] + splits[i][1].slice(1, word.length)
     }
-    let mistakes.push(deletes)
+    mistakes.push(deletes)
 
     let transposes = []
     for (i = 0; i < word.length; i++){
@@ -47,7 +47,7 @@ function oneAway (word) {
     }
     mistakes.push(inserts)
 
-    let filtered = mistakes.filter((value, index, array) => {
+    let filtered = mistakes.filter((value, _index, _array) => {
         if (value != undefined)
             return value
     })
