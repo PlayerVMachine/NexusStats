@@ -1,9 +1,12 @@
-const MongoClient = require('mongodb').MongoClient
-const f = require('util').format
-const Eris = require('eris')
+const MongoClient = require(`mongodb`).MongoClient
+const f = require(`util`).format
+const Eris = require(`eris`)
+
+//Project files
+const helpper = require(`./helper.js`)
 
 //config files
-const config = require('./config.json')
+const config = require(`./config.json`)
 
 //TODO: Add required project files
 
@@ -20,6 +23,7 @@ bot.on(`ready`, () => {
 });
 
 //TODO: Generate command list
+commands = []
 
 bot.on(`messageCreate`, message)
 {
@@ -35,6 +39,14 @@ bot.on(`messageCreate`, message)
     if (message.content.startsWith(`n.`) || message.content.startsWith(bot.user.mention))
     {
         //Check for command and send message contents to appropriate command handler
+        let cmd = message.content.startsWith(`n.`) ? message.content.splice(2, message.context.indexOf(` `)) : message.content.splice(bot.user.mention.length, message.context.indexOf(` `))
+        
+        if (-1 = commands.indexOf(cmd)) {
+            let response = helper.oneAway(cmd)
+            if (0 < response.length)
+                bot.createMessage(message.channel.id, response)
+        }
+        
     }
 
 //As needed parse messages that don't start with commands but we do care about
