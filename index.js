@@ -23,9 +23,9 @@ bot.on(`ready`, () => {
 });
 
 //TODO: Generate command list
-commands = []
+let commands = []
 
-bot.on(`messageCreate`, message)
+bot.on(`messageCreate`, async (message) =>
 {
     //TODO: Parse Messages
     //Ignore Bots
@@ -42,15 +42,18 @@ bot.on(`messageCreate`, message)
         let cmd = message.content.startsWith(`n.`) ? message.content.splice(2, message.context.indexOf(` `)) : message.content.splice(bot.user.mention.length, message.context.indexOf(` `))
         
         if (-1 = commands.indexOf(cmd)) {
-            let response = helper.oneAway(cmd)
+            let didYouMean = helper.oneAway(cmd , commands)
             if (0 < response.length)
-                bot.createMessage(message.channel.id, response)
+                let response = await bot.createMessage(message.channel.id, didYouMean)
+                setTimeout((msg) => {
+                    //delete message
+                }, 2000, response)
         }
         
     }
 
 //As needed parse messages that don't start with commands but we do care about
-}
+})
 
 //TODO: Parse other events
 //Guild Create and Delete
