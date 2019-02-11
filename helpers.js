@@ -1,3 +1,5 @@
+const f = require(`util`).format
+
 let oneAway = (word) => {
     let letters = `abcdefghijklmnopqrstuvwxyz`
     let mistakes = []
