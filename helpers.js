@@ -1,9 +1,4 @@
-//Suggest proper spelling of a command
-function didYouMean (_word, _commands, _common) {
-
-}
-
-function oneAway (word) {
+let oneAway = (word) => {
     let letters = `abcdefghijklmnopqrstuvwxyz`
     let mistakes = []
 
@@ -55,6 +50,17 @@ function oneAway (word) {
     return filtered
 }
 
-function known () {
+//Suggest proper spelling of a command
+module.exports didYouMean = (word, commands) => {
+    let options = oneAway(word)
     
+    let found = options.find((elem) => {
+        if (-1 < commands.indexOf(elem))
+            return elem
+    })
+    
+    if (undefined != found)
+        return f(`Command {} not found did you mean {}?`, word, found)
+    else
+        return ``
 }
